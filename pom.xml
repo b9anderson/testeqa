@@ -6,9 +6,46 @@
 	<artifactId>projeto.api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>net.masterthought</groupId>
+				<artifactId>maven-cucumber-reporting</artifactId>
+				<version>2.0.0</version>
+				<executions>
+					<execution>
+						<id>execution</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+						<configuration>
+							<projectName>cucumber-jvm-example</projectName>
+							<outputDirectory>${project.build.directory}/report-json</outputDirectory>
+							<cucumberOutput>${project.basedir}/reportcucumber/cucumber.json</cucumberOutput>
+							<skippedFails>true</skippedFails>
+							<enableFlashCharts>false</enableFlashCharts>
+							<buildNumber>42</buildNumber>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<testFailureIgnore>false</testFailureIgnore>
+					<argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
 	<properties>
   		<maven.compiler.source>1.6</maven.compiler.source>
 	        <maven.compiler.target>1.6</maven.compiler.target>
+	        <jenkins-test-harness.version>2.34</jenkins-test-harness.version>
       </properties>
 
 			<profiles>
@@ -56,7 +93,8 @@
 			<version>4.0.0</version>
 			<scope>test</scope>
 		</dependency>
-
+		
+		
 
 		<!-- https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
 		<dependency>
