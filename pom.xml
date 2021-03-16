@@ -11,6 +11,34 @@
 	        <maven.compiler.target>1.6</maven.compiler.target>
       </properties>
 
+			<profiles>
+		    <profile>
+			<id>integration-tests</id>
+			<build>
+			    <plugins>
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-failsafe-plugin</artifactId>
+				    <configuration>
+					<parallel>none</parallel>
+					<threadCount>1</threadCount>
+					<disableXmlReport>true</disableXmlReport>
+				    </configuration>
+				    <executions>
+					<execution>
+					    <id>Runnerclass</id>
+					    <phase>integration-test</phase>
+					    <goals>
+						<goal>integration-test</goal>
+					    </goals>
+					</execution>
+				    </executions>
+				</plugin>
+			    </plugins>
+			</build>
+		    </profile>
+		</profiles>
+	
 	<dependencies>
 		
 			<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
