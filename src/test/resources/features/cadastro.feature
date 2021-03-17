@@ -25,7 +25,7 @@ Feature: Cadastro de funcionarios
 
 			Scenario: cadastrar usuario cadastrado
 			Given que esteja usando o verbo post para cadastrar um usuario cadastrado
-			Then retorna status code de erro 200
+			Then retorna status code de erro 500
 			And retorna responseBody "User already exists\",\"status\":\"error\"}"
 			
 			
